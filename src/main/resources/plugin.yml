@@ -1,0 +1,8 @@
+name: Man10DrugPlugin
+version: 1.0
+softdepend:
+  - Man10CommonLibs
+main: red.man10.man10drugplugin.Man10DrugPlugin
+commands:
+  mdp:
+    default: op
