@@ -26,7 +26,7 @@ class Commands(private val plugin: Man10DrugPlugin) : CommandExecutor {
 
         //指定プレイヤーに指定ドラッグを付与する
         if (cmd == "using"){
-            if (plugin.drugName.indexOf(args[1]) == -1)return true
+            if (!plugin.drugName.contains(args[2]))return true
 
             val p = Bukkit.getPlayer(args[1])
             val drug = args[2]

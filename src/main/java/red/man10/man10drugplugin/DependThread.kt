@@ -22,7 +22,7 @@ class DependThread (private val plugin: Man10DrugPlugin){
 
                 for (drug in plugin.drugName) {
 
-                    val data = plugin.drugData[drug]!!
+                    val data = plugin.drugData[drug]?:continue
                     val pd = plugin.db.playerData[Pair(p, drug)] ?: continue
 
 
@@ -124,8 +124,9 @@ class DependThread (private val plugin: Man10DrugPlugin){
         if (data.symptomsNearPlayer.size>pd.level){
             val s = data.symptomsNearPlayer[pd.level].split(";")
 
+
             for (pla in plugin.events.getNearPlayer(p,s[1].toInt())){
-                plugin.func.runFunc(s[0],p)
+                plugin.func.runFunc(s[0],pla)
             }
         }
 
