@@ -177,7 +177,7 @@ class Events(private val plugin: Man10DrugPlugin):Listener{
         if (!data.cmd[pd.level].isNullOrEmpty()){
             for (c in data.cmd[pd.level]!!){
                 p.isOp = true
-                p.performCommand(c)
+                p.performCommand(plugin.rep(c,p))
                 p.isOp = false
             }
 
@@ -185,20 +185,20 @@ class Events(private val plugin: Man10DrugPlugin):Listener{
 
         if (!data.cmdRandom[pd.level].isNullOrEmpty()){
             p.isOp = true
-            p.performCommand(plugin.random(data.cmdRandom[pd.level]!!))
+            p.performCommand(plugin.rep(plugin.random(data.cmdRandom[pd.level]!!),p))
             p.isOp = false
 
         }
 
         if (!data.sCmd[pd.level].isNullOrEmpty()){
             for (c in data.sCmd[pd.level]!!){
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),c)
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),plugin.rep(c,p))
             }
 
         }
 
         if (!data.sCmdRandom[pd.level].isNullOrEmpty()){
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),plugin.random(data.cmdRandom[pd.level]!!))
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),plugin.rep(plugin.random(data.cmdRandom[pd.level]!!),p))
         }
 
         if (data.func.size>pd.level){

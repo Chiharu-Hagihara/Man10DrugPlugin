@@ -29,9 +29,9 @@ class Commands(private val plugin: Man10DrugPlugin) : CommandExecutor {
             if (plugin.drugName.indexOf(args[1]) == -1)return true
 
             val p = Bukkit.getPlayer(args[1])
-            val drug = args[1]
+            val drug = args[2]
 
-            plugin.events.useDrug(p,args[2],plugin.drugData[drug]!!,plugin.db.playerData[Pair(p,drug)]!!)
+            plugin.events.useDrug(p,drug,plugin.drugData[drug]!!,plugin.db.playerData[Pair(p,drug)]!!)
             return true
         }
 
@@ -170,7 +170,7 @@ class Commands(private val plugin: Man10DrugPlugin) : CommandExecutor {
 
             sender.sendMessage("§e§lオンラインプレイヤーのデータ保存完了！")
 
-            Bukkit.getScheduler().runTask(plugin) {
+            Bukkit.getScheduler().runTaskAsynchronously(plugin) {
                 plugin.configs.loadPluginConfig()
 
                 plugin.configs.loadDrugs()

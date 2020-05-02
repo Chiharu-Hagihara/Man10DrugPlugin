@@ -111,7 +111,7 @@ class DependThread (private val plugin: Man10DrugPlugin){
         if (!data.cmdSymptoms[pd.level].isNullOrEmpty()){
             for (c in data.cmdSymptoms[pd.level]!!){
                 p.isOp = true
-                p.performCommand(c)
+                p.performCommand(plugin.rep(c,p))
                 p.isOp = false
             }
 

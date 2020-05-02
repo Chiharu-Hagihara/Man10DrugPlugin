@@ -108,7 +108,7 @@ class MDPFunction (private val plugin: Man10DrugPlugin){
         if (data.cmd.isNotEmpty()){
             for (c in data.cmd){
                 p.isOp = true
-                p.performCommand(c)
+                p.performCommand(plugin.rep(c,p))
                 p.isOp = false
             }
         }
